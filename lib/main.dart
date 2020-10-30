@@ -54,7 +54,15 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: _quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+        children: _quotes
+            .map((quote) => QuoteCard(
+            quote: quote,
+            delete: () {
+              setState(() {
+                _quotes.remove(quote);
+              });
+            }))
+            .toList(),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
