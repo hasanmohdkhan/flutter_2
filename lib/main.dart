@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quotes/Quote.dart';
+import 'package:quotes/quote_card.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,26 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
         author: 'DJ')
   ];
 
-  Widget generateListItem(Quote quote) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Text(quote.text,
-                  style: TextStyle(fontSize: 20.0, color: Colors.grey[900])),
-              SizedBox(height: 6.0),
-              Text(quote.author,
-                  style: TextStyle(fontSize: 15.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,9 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: _quotes
-            .map((quote) => generateListItem(quote))
-            .toList(),
+        children: _quotes.map((quote) => QuoteCard(quote: quote)).toList(),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
